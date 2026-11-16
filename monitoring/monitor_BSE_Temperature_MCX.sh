@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
-# Sanitized template reconstructed from chat history (April 22, 2026 design)
+# Monitors MCX/BSE server core temps, ExaNIC temps, disk usage, and RX errors/drops.
 # Loads credentials and host lists from ../.env
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 [ -f "$SCRIPT_DIR/../.env" ] && source "$SCRIPT_DIR/../.env"
 
 TEMP_THRESHOLD="${TEMP_THRESHOLD:-75}"
-DB_HOST="${PG_HOST:-127.0.0.1}"
-DB_USER="${PG_USER:-db_user}"
-DB_NAME="${PG_NAME:-infra_monitor}"
 
 for host in ${MCX_BSE_HOSTS:-10.0.0.1 10.0.0.2}; do
   raw_output=$(sshpass -p "$SSH_PASS_BSE" ssh -o ConnectTimeout=3 -o StrictHostKeyChecking=no "root@${host}" '

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Continuous reachability monitor for MCX hosts
+# Continuous reachability monitor for MCX hosts logging RUNNING/UNREACHABLE states.
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 [ -f "$SCRIPT_DIR/../.env" ] && source "$SCRIPT_DIR/../.env"
